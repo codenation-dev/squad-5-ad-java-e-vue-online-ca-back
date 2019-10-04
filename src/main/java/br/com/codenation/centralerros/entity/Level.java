@@ -20,7 +20,7 @@ public class Level {
     private String nome;
 
     @OneToMany
-    private List<Erro> erros;
+    private List<Log> logs;
 
     public int getId() {
         return id;
@@ -38,11 +38,11 @@ public class Level {
         this.nome = nome;
     }
 
-    public List<Erro> getErros() {
-        return erros;
+    public List<Log> getLogs() {
+        return logs;
     }
 
-    public void setErros(List<Erro> erros) {
-        this.erros = erros;
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
     }
 }

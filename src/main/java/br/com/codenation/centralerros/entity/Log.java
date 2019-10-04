@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Erro {
+public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

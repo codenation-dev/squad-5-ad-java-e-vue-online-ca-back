@@ -3,7 +3,6 @@ package br.com.codenation.centralerros.entity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -22,7 +21,7 @@ public class Categoria {
     private String nome;
 
     @OneToMany
-    private List<Erro> erros;
+    private List<Log> logs;
 
     public int getId() {
         return id;
@@ -40,11 +39,11 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<Erro> getErros() {
-        return erros;
+    public List<Log> getLogs() {
+        return logs;
     }
 
-    public void setErros(List<Erro> erros) {
-        this.erros = erros;
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
     }
 }
