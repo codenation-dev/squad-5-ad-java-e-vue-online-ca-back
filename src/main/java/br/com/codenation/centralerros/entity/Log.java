@@ -39,10 +39,12 @@ public class Log {
     @ManyToOne
     private Usuario usuario;
 
-    @ManyToOne
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
     private Categoria categoria;
 
-    @ManyToOne
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
     private Level level;
 
     public int getId() {
