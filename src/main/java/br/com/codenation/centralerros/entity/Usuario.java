@@ -39,11 +39,11 @@ public class Usuario {
     @OneToMany
     private List<Log> logs;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
