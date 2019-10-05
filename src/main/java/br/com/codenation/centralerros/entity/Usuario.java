@@ -32,7 +32,7 @@ public class Usuario {
     private String senha;
 
     @Column
-    @NotNull
+//    @NotNull
     @Size(max=255)
     private String token;
 

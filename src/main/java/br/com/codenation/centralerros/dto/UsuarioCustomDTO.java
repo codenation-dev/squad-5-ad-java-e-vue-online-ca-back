@@ -5,15 +5,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class UsuarioCustomDTO implements UserDetails {
 
     private String login;
     private String senha;
 
-    public UsuarioCustomDTO(Usuario usuario) {
-        this.login = usuario.getEmail();
-        this.senha = usuario.getSenha();
+    public UsuarioCustomDTO(Optional<Usuario> usuario) {
+        this.login = usuario.get().getEmail();
+        this.senha = usuario.get().getSenha();
     }
 
     @Override
