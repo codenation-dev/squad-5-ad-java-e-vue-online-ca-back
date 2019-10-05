@@ -5,16 +5,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Optional;
 
-public class UsuarioCustomDTO implements UserDetails {
+public class UsuarioSegurityDTO implements UserDetails {
 
-    private String login;
+    private String email;
     private String senha;
 
-    public UsuarioCustomDTO(Optional<Usuario> usuario) {
-        this.login = usuario.get().getEmail();
-        this.senha = usuario.get().getSenha();
+    public UsuarioSegurityDTO(Usuario usuario) {
+        this.email = usuario.getEmail();
+        this.senha = usuario.getSenha();
     }
 
     @Override
@@ -29,8 +28,9 @@ public class UsuarioCustomDTO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

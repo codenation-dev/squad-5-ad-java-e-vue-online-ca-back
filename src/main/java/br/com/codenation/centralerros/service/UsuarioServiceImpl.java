@@ -1,22 +1,25 @@
 package br.com.codenation.centralerros.service;
 
+import br.com.codenation.centralerros.dto.UsuarioDTO;
 import br.com.codenation.centralerros.entity.Usuario;
 import br.com.codenation.centralerros.exception.ExistException;
+import br.com.codenation.centralerros.mapper.UsuarioMapper;
 import br.com.codenation.centralerros.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class UsuarioServiceImpl  {
 
-    @Autowired
     private UsuarioRepository usuarioRepository;
+    private UsuarioMapper mapper;
 
     public Optional<Usuario> findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
@@ -26,14 +29,14 @@ public class UsuarioServiceImpl  {
         return usuarioRepository.findAll();
     }
 
-    public Usuario save(Usuario usuario) {
-        validarEmailExists(usuario.getEmail());
+    @Transactional
+    public Usuario save(UsuarioDTO dto) {
+        validarEmailExists(dto.getEmail());
 
-        Usuario user = usuario;
+        Usuario user = mapper.map(dto);
         user.setToken(UUID.randomUUID().toString());
-        user.setSenha(passwordEncoder().encode(usuario.getSenha()));
+        user.setSenha(passwordEncoder().encode(dto.getSenha()));
         user = usuarioRepository.saveAndFlush(user);
-
         return user;
     }
 
@@ -43,5 +46,9 @@ public class UsuarioServiceImpl  {
 
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    public Optional<Usuario> findByToken(String token) {
+        return usuarioRepository.findByToken(token);
     }
 }
