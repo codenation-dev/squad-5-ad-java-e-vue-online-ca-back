@@ -20,10 +20,12 @@ Project Developed over 10 weeks, in the CodeNation acceleration course, which co
 
 ## Version
 
-0.1
+1.0
 
 ## Authors
 
+* [Jeremias Ponciano Da Silva](https://github.com/jereps)
+* [Felipe de Oliveira](https://github.com/FelipeOSilva)
 
 ## License
 
